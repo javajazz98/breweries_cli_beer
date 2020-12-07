@@ -1,0 +1,5 @@
+#!/usr/bin/evn ruby
+
+require_relative"../config/environment"
+
+CLI.new.run
