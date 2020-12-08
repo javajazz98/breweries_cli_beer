@@ -1,12 +1,17 @@
-class brewerydb::API
+class Api
     def initialize
         @url = "https://api.openbrewerydb.org/breweries"
     end 
+def self.get_breweries
+    
+    #review
 
-    def get_breweries 
-        uri: = URI.parse(@url)
-        binding.pry
-    end
+    name = beer ['name']
+    type = beer ['type']
+    state = beer ['state'] 
+    url = beer ['url']
+    Breweries_cli_beer.new(name,type,state)  # b is cap or low
+end 
 end 
 
-brewerydb::API.new.get_breweries 
+
