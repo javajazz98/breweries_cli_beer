@@ -1,5 +1,5 @@
 #!/usr/bin/evn ruby
 
-require_relative"../config/environment"
+require_relative"../lib/breweries_cli_beer.rb"
 
 CLI.new.run

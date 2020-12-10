@@ -1,18 +1,19 @@
 class Cli
     def run
-        Welcome! Lets look at some beer options!
-           Api.get_breweries
+        welcome #look at later
+           Api.get_Breweries
+                main #look at later
     end 
     def main 
         puts "Please enter a beer ID to learn more about it."
             print_all
                input = gets.strip
-                    if input.to_i < 1 || input.to_i > breweries.all.size
+                    if input.to_i < 1 || input.to_i > Breweries.all.size
                         puts "please re-enter a correct ID."
                         main
                     elsif 
-                        breweries = breweries.find_by_id (input.to_i)
-                        print_breweries_info(name)
+                        beer = Breweries.find_by_id (input.to_i)
+                        print_Breweries_info(beer)
                         continue?
     end 
     end 
@@ -21,19 +22,25 @@ class Cli
             input= gets.strip.downcase
                 if input =='Y'
                     main #do I need this?
-                        elsif input == 'N'
-                            Okay... Goodbye!
+                    elsif input == 'N'
+                            goodbye #review
                                 else 
                                     puts "Try again, I did not get understand your command."
-                                        Would you like to continue?
+                                         continue? #Would you like to 
     end 
         def goodbye 
-            puts "Good bye!!"
-                exit.
+                puts "Good bye!!"
+                    exit.
     end 
-        def Welcome
+    def print_beer.info(beer)
+            puts "Name: #{beer.name}. Type: #{beer.type}. State #{beer.state}. URL #{beer.url}."
+    end 
+    def print_all
+            Breweries.all.each.with.index{|beer| puts "#{beer.id}. #{beer.name}"}
+    end 
+    def Welcome
             puts "Welcome to the Cli Breweries! "
-        end 
+     end 
 end 
 
                                 
