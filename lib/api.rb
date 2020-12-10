@@ -10,7 +10,7 @@ def self.get_breweries
     type = beer ['type']
     state = beer ['state'] 
     url = beer ['url']
-    Breweries_cli_beer.new(name,type,state)  # b is cap or low
+    Breweries_cli_beer.new(name, type, state, url)  # b is cap or low
 end 
 end 
 
