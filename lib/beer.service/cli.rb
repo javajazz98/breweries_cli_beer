@@ -1,54 +1,44 @@
 class Cli
-    def start
-       Puts  welcome 
-           Api.load_data
-             main_menu_options 
+    def run
+     puts "welcome"
+     Api.get_brewery
     end 
-          
-               
-   
-    def main_menu_options
-        puts "Please enter a beer ID to learn more about it."
-        main_menu
-    end
-    def breweries_details
-        
-
-               input = gets_input
-                    if input.to_i < 1 || input.to_i > Breweries.all.size
-                        puts "please re-enter a correct ID."
-                        main
-                    elsif 
-                        beer = Breweries.find_by_id (input.to_i)
-                        print_Breweries_info(beer)
-                        continue?
+def main 
+    puts " Please pick an id."
+    print_all
+    input = gets.strip 
+    if input.to_i <1 || input.to_i > breweries.all.size
+        puts "please retype a correct number."
+        main 
+    elsif 
+        brewery = Brewery.find_by_id(input.to_i)
+        print_brwery_info(brewery)
+        continue?
     end 
+end
+def continue?
+    puts "would you like to try again? Y or N"
+        input = gets.strip.downcase 
+    if input == 'y'
+        main 
+    elsif input == 'n'
+            goodbye.
+    else 
+        puts "I am sorry I did not get your command."
+        continue?
     end 
-    def continue?
-         puts "Would you like to look at another beer? Y or N"
-            input= gets.strip.downcase
-                if input =='Y'
-                    main_menu_options
-                    elsif input == 'N'
-                            goodbye 
-                                else 
-                                    puts "Try again, I did not get understand your command."
-                                         continue? #Would you like to 
-    end 
-        def goodbye 
-                puts "Good bye!!"
-                    exit.
-    end 
-    def print_beer.info(beer)
-            puts "Name: #{beer.name}. Type: #{beer.type}. State #{beer.state}. URL #{beer.url}."
-    end 
-    def print_all
-            Breweries.all.each.with.index{|beer| puts "#{beer.id}. #{beer.name}"}
-    end 
-    def Welcome
-            puts "Welcome to the Cli Breweries! "
-     end 
 end 
-
-                                
-            
+def goodbye 
+    puts "Goodbye!"
+    exit!
+end 
+def print_brewery_info(brewery)
+    puts "Name: #{brewery.name}. Type: #{brewery.type}. State #{brewery.state}. URL #{brewery.url}. ID #{brewery.id}."
+end 
+def print_all
+    brewery.all.each.with_index{|brewery| puts "#{brewery.name}.#{brewery.id}"}
+end 
+def welcome
+    puts "welcome to Breweries!"
+end 
+end
