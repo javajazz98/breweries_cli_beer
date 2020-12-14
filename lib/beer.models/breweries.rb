@@ -1,7 +1,7 @@
-class Breweries  #name of page or name of cli?
+class Beer
     attr_accessor :name, :type, :state , :url, :id
      @@all=[]
-def initialize(name)
+def initialize(name, type, state, url, id)
     @name = name
     @type = type 
     @state = state
@@ -11,10 +11,5 @@ def initialize(name)
 end 
 def self.all 
     @@all
-end 
-
-def self.find_by_id(id)
-    all.find{|beer| food.id == id} #same question ID or URL 
-          #binging.pry
 end 
 end 

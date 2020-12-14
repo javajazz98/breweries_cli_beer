@@ -1,21 +1,18 @@
 class Api
-    URL = "https://api.openbrewerydb.org/breweries"
-   
-    def self.get_beer
-        response = RestClient.get(@url)
-        data = JSON.parse(response.body)
-        data["results"].each do |beer|
-            #binding.pry 
-    #review
-
-    name = beer ['name']
-    type = beer ['type']
-    state = beer ['state'] 
-    url = beer ['url']
-    id = beer ['id'] 
-    
-    Breweries_cli_beer.new(name, type, state, url)  # b is cap or low
+   def self.base_url
+    "https://api.openbrewerydb.org/breweries"
+   end 
+   def self.load.data
+    load_breweries
+   end 
+   def self.load_breweries
+    response = RestClient.get(base_url +'/breweries')
+    data =JSON.parse(response.body)
+    data.each do |beer|
+    Beer.new(beer["name"], beer["type"], beer["state"], beer ["url"], beer ["id"])
     end 
 end 
+ 
+
 
 

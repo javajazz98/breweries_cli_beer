@@ -1,13 +1,20 @@
 class Cli
-    def run
-        welcome #look at later
-           Api.get_Breweries
-                main #look at later
+    def start
+       Puts  welcome 
+           Api.load_data
+             main_menu_options 
     end 
-    def main 
+          
+               
+   
+    def main_menu_options
         puts "Please enter a beer ID to learn more about it."
-            print_all
-               input = gets.strip
+        main_menu
+    end
+    def breweries_details
+        
+
+               input = gets_input
                     if input.to_i < 1 || input.to_i > Breweries.all.size
                         puts "please re-enter a correct ID."
                         main
@@ -21,9 +28,9 @@ class Cli
          puts "Would you like to look at another beer? Y or N"
             input= gets.strip.downcase
                 if input =='Y'
-                    main #do I need this?
+                    main_menu_options
                     elsif input == 'N'
-                            goodbye #review
+                            goodbye 
                                 else 
                                     puts "Try again, I did not get understand your command."
                                          continue? #Would you like to 
