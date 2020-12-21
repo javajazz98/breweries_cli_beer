@@ -1,44 +1,79 @@
-class Cli
-    def start
-       puts "Welcome" 
-       data = Api.load_data
-       data.each do |d| 
-       puts print_brewery_info 
-    end 
-    def main 
-        puts "Please pick an id."
-        print @all
-    input = gets.strip 
-    if input.to_i <1 || input.to_i > breweries.all.size
-        puts "please retype a correct number."
-        main 
-    elsif 
-        brewery = Brewery.find_by_id(input.to_i)
-        print_brwery_info(brewery)
-        continue?
-    end 
-    def continue?
-        puts "would you like to try again? Y or N"
-        input = gets.strip.downcase 
-    if input == 'y'
-        main 
-    elsif input == 'n'
-            goodbye.
-    else 
-        puts "I am sorry I did not get your command."
-        continue?
-    end  
-    def goodbye 
-        puts "Goodbye!"
-        exit!
-    end 
-    def print_brewery_info(brewery)
-        puts "Name: #{brewery.name}. Type: #{brewery.type}. State #{brewery.state}. URL #{brewery.url}. ID #{brewery.id}."
-    end 
-    def print_all
-        brewery.all.each.with_index{|brewery| puts "#{brewery.name}.#{brewery.id}"}
-    end 
-    def welcome
-        puts "welcome to Breweries!"
+class CLI
+    def start 
+        puts "Welcome to Brewery options"
+        Api.get_data
+        main_menu_options
     end
-end
+    def main_menu_options
+       puts "Type '1' to list Breweries"
+       puts "Type 'Exit' to leave"
+       main_menu
+    end 
+    def main_menu
+        input = get_input
+        if input == "1"
+            puts "select Brewery number for more information"
+            main_menu_options
+        elsif input == "exit"
+            puts "Good bye"
+            exit 
+        else 
+            invalid_choice 
+            main_menu_options
+            binding.pry 
+        end 
+    end 
+    def invalid_choice
+        puts "Invalid choice, Please try again."
+    end 
+    def get_input
+        print "Enter option"
+        gets.chomp 
+    end 
+    def list_api   
+        brewery_data.all.each.with_index(1) do |api,index|
+            puts "#{index}. #{api.api}"
+        end 
+        api_details_menu_options 
+    end 
+    def api_details_menu_options
+        puts "Select the number for more information"
+        puts "Or type exit to leave."
+        api_details_menu
+    end 
+    def api_details_menu
+        input = get_input
+        if input.to_i.between?(1,brewery_data.all.length)
+            index = input.to_i - 1 
+            api = brewery_data.all[index]
+            print_api_details(api)
+            select_again_or_exit
+        elsif input == "exit"
+            puts "Exit information"
+            puts "Goodbye"
+            exit
+        else 
+            invalid_choice
+            api_details_menu_options
+        end 
+    end 
+    def print_api_details(api)
+        puts "name #{api.name}"
+        puts "Api state #{api.state}"
+    end 
+    def select_again_or_exit
+        puts "Would you like to go back to main menu or exit?"
+        puts "'1' for main menu"
+        puts "'exit' to exit program"
+        input = get_input
+            if input == '1' 
+                main_options 
+            elsif input == 'exit'
+                puts "Good bye."
+                exit 
+            else 
+                invalid_choice
+                select_again_or_exit
+            end 
+        end 
+    end

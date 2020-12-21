@@ -1,13 +1,16 @@
 class Api 
-   URL = "https://api.openbrewerydb.org/breweries"
-def breweries
-   response = RestClient.get(URL)
-   data = JSON.parse(response.body)
-   name = brewery ['name']
-   type = brewery ['type']
-   state = brewery ['state'] 
-   url = brewery ['url']
-   id = brewery ['id'] 
-   Breweries.new(name, type, state, species, id)
+   def self.get_data
+      response = RestClient.get("https://api.openbrewerydb.org/breweries")
+      #binding.pry
+      data = JSON.parse(response.body)
+      data.each do |brewery_hash|
+      brewery_data = {
+         "name" => brewery_hash["name"],
+         "state" => brewery_hash["state"],
+         "brewery_type" => brewery_hash["brewery_type"]
+      }
+      Brewery.new(brewery_data)
+      end
+     
+   end 
 end 
-end
