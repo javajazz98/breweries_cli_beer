@@ -3,8 +3,6 @@
 #require 'net/http'
 #require 'json'
 
-
-
 class Brewery
     attr_accessor :name, :state, :brewery_type
     @@all = []

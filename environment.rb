@@ -1,4 +1,3 @@
-
 require 'rest-client'
 require 'pry'
 require 'net/http'

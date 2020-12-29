@@ -15,7 +15,7 @@ class CLI
             puts "#{i}: #{d.name}, #{d.state}, #{d.brewery_type}"
         end 
     end     
-    def menu
+    def main_menu
         input = nil
         while input != "exit"
             input = gets.strip.downcase
